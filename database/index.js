@@ -3,22 +3,35 @@ const mysql = require('mysql');
 //https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html
 
 const db = mysql.createConnection({
-  host: 'db.cjd9cquxgjfw.us-west-2.rds.amazonaws.com',
-  port: '3306',
-  user: 'admin',
-  password: '12345678',
-  database: 'fenty_nav_videos'
+  // host: 'db.cjd9cquxgjfw.us-west-2.rds.amazonaws.com',
+  // port: '3306',
+  user: 'root',
+  password: '',
+  database: 'fenty_nav_videos',
+  connectTimeout: 30000,
 });
 
 db.connect((err)=>{
   if (err) {
-    console.log('Error connecting to Database:', err.sqlMessage);
+    throw err;
+  } else {
+    console.log('connected');
   }
-
-  db.query('USE fenty_nav_videos');
-
-  console.log('Connected to database fenty_nav_videos successfully');
 });
 
 
 module.exports = db;
+// const config = require('./config');
+// const mongoose = require('mongoose');
+// const schema = require('./schema');
+// mongoose.connection('mongodb://localhost/nav', { useUnifiedTopology: true, useNewUrlParser: true});
+
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', () => {
+//   console.log('Connected');
+// });
+
+// var Products = mongoose.model('Products', schema);
+
+// module.exports = Products;
