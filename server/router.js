@@ -1,22 +1,26 @@
 const router = require('express').Router();
-const controller = require('./controller');
+const Productsdata = require('../database/index.js');
 
-router
-  .route('/products')
-  .get(controller.getProducts)
-  .post(controller.addProduct);
-
-router
-  .route('/search')
-  .get(controller.searchProducts);
-
-router
-  .route('/products/:id')
-  .delete(controller.deleteProduct)
-  .put(controller.updatePrice);
-
-router
-  .route('/videos')
-  .post(controller.searchProduct);
-
+router.get('/products', (req, res) => {
+  Productsdata.find({ _id: { $lt: 500 } })
+    // .exec()
+    .then(doc => {
+      // console.log(doc)
+      res.status(200).json(doc);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
+router.post('/search', (req, res) => {
+  Productsdata.find({ "productname": { $regex: req.body.productname, $options: 'i' } })
+    .limit(4)
+    .exec()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
 module.exports = router;
