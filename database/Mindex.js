@@ -1,14 +1,15 @@
-const config = require('./config');
-const mongoose = require('mongoose');
-const schema = require('./schema');
-mongoose.connection('mongodb://localhost/nav', { useUnifiedTopology: true, useNewUrlParser: true});
+var mongoose = require('mongoose');
+var schema = require('./Mschema');
+mongoose.connect('mongodb://localhost/nav', { useUnifiedTopology: true, useNewUrlParser: true});
 
-const db = mongoose.connection;
+var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Connected');
+  console.log('Connected to database');
 });
 
-var Products = mongoose.model('Products', schema);
+// .model Mongoose compiles a model
+// first argument is the singular name of the collection your model is for
+var Product = mongoose.model('Product', schema);
 
-module.exports = Products;
+module.exports = Product;

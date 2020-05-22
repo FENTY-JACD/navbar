@@ -31,8 +31,10 @@ let createMockProduct = () =>{
 
 const createProducts = () => {
   let productsArr = [];
-  for (let i = 0; i < 100; i++) {
-    productsArr.push(createMockProduct());
+  for (let j = 0; j < 100; j++) {
+    for (let i = 0; i < 100000; i++) {
+      productsArr.push(createMockProduct());
+    }
   }
   return productsArr;
 };
@@ -40,23 +42,18 @@ const createProducts = () => {
 let products = createProducts();
 
 var seedDb = () =>{
-
   for (let i = 0; i < products.length; i++) {
-
-    let query = `INSERT INTO products (name, price, foreground) VALUES ('${products[i]["name"]}',${products[i]["price"]},'${products[i]["foreground"]}');`;
-
-    console.log(query);
-    db.query(query);
-
+    let queryStr = `INSERT INTO products (name, price, foreground) VALUES ('${products[i]["name"]}',${products[i]["price"]},'${products[i]["foreground"]}');`;
+    db.query(queryStr, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('seeded: ', i);
+      }
+    });
   }
-
+  console.log(process.memoryUsage());
 };
 
 seedDb();
-
-
-
-
-
-
 
