@@ -3,23 +3,23 @@ const db = require('./index.js');
 
 const dbHelpers = {
   getProducts: (callback) => {
-    let query = 'SELECT * FROM products';
-    db.query(query, (err, results) => {
+    let queryStr = 'SELECT * FROM products';
+    db.query(queryStr, (err, results) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, results);
+        callback(null, results.rows);
       }
     });
   },
   searchProducts: (req, callback) => {
     console.log('Search from backend:', req.query.search);
-    let query = `SELECT * FROM products WHERE name LIKE '%${req.query.search}%'`;
-    db.query(query, (err, results) => {
+    let queryStr = `SELECT * FROM products WHERE name LIKE '%${req.query.search}%'`;
+    db.query(queryStr, (err, results) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, results);
+        callback(null, results.rows);
       }
     });
   },
@@ -39,17 +39,17 @@ const dbHelpers = {
       if (err) {
         callback(err);
       } else {
-        callback(null, results);
+        callback(null, results.rows);
       }
     });
   },
-  updatePrice:(id, price, callback) => {
-    let queryStr = `UPDATE products SET price=${price} WHERE id=${id};`;
+  updatePrice: (obj, id, callback) => {
+    let queryStr = `UPDATE products SET price=${obj.price} WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, results);
+        callback(null, results.rows);
       }
     });
   }
