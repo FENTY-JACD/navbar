@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack --w",
-    "schema": "mysql -u root < schema.sql",
-    "seed": "node --max_old_space_size=16192 database/seed.js ",
+    "genCSV": "node ./database/MSeed.js",
+    "seed": "mongoimport --type csv -d nav -c products --headerline --drop --file ./database/products.csv",
     "test": "jest",
     "aws": "aws s3 sync client/dist s3://navvideo --acl public-read",
     "deploy": "npm run build && npm run aws"
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/proj-plus-ultra/fenty-footer-youll-wanna-see-this.git"
   },
-  "author": "Alex Benko",
+  "author": "Anna Dinh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/proj-plus-ultra/fenty-footer-youll-wanna-see-this/issues"
@@ -30,6 +30,7 @@
     "cors": "^2.8.5",
     "csv-write-stream": "^2.0.0",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "fs": "0.0.1-security",
     "log-timestamp": "^0.3.0",
     "mongoose": "^5.9.15",
