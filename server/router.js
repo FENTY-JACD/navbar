@@ -1,9 +1,11 @@
-const router = require('express').Router();
-const Productsdata = require('../database/index.js');
+const express = require('express');
+const router = express.Router();
+const Product = require('../database/Mindex.js');
 
 router.get('/products', (req, res) => {
-  Productsdata.find({ _id: { $lt: 500 } })
-    // .exec()
+  Product.find()
+    .sort({ $natural: 1 })
+    .limit(1000)
     .then(doc => {
       // console.log(doc)
       res.status(200).json(doc);
@@ -12,12 +14,26 @@ router.get('/products', (req, res) => {
       console.error(err);
     });
 });
-router.post('/search', (req, res) => {
-  Productsdata.find({ "productname": { $regex: req.body.productname, $options: 'i' } })
-    .limit(4)
-    .exec()
+
+router.get('/search', (req, res) => {
+  Product.find({ "name": { $regex: req.query.search, $options: 'i' } })
+    .limit(8)
     .then(data => {
       res.status(200).send(data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
+router.post('/products', (req, res) => {
+  let { name, price, foreground } = req.body;
+  Product.insertMany({
+    name: name,
+    price: price,
+    foreground: foreground
+  })
+    .then(() => {
+      res.status(200).send('Product added');
     })
     .catch(err => {
       console.error(err);

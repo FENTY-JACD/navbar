@@ -1,0 +1,15 @@
+config:
+  target: "http://localhost:4201"
+  phases:
+    - duration: 10
+      arrivalRate: 100
+scenarios:
+  - flow:
+    - post:
+        url: "/products"
+        csv:
+          name: "Cute pup"
+          price: "LM5569S_1966_1"
+          foreground: "https://feccapstone.s3-us-west-1.amazonaws.com/FB30020_FB0340.jpg"
+    - log: "Sent a request to /products"
+

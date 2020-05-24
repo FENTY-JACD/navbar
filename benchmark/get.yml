@@ -1,0 +1,9 @@
+config:
+  target: "http://localhost:4201"
+  phases:
+    - duration: 10
+      arrivalRate: 100
+scenarios:
+  - flow:
+    - get:
+        url: "/products"

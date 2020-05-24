@@ -1,0 +1,29 @@
+# config:
+#   target: "http://localhost:4201"
+#   phases:
+#     - duration: 10
+#       arrivalRate: 100
+# scenarios:
+#   - flow:
+#     - get:
+#         url: "/search"
+# config:
+#   target: "http://localhost:4201"
+#   phases:
+#     - duration: 10
+#       arrivalRate: 100
+#   payload:
+#     path: "../products.csv"
+#     fields:
+#       - "name"
+# scenarios:
+#   - name: "Search for a product and return product details"
+#     flow:
+#       - post:
+#           url: "/search"
+#           body: "kw={{ name }}"
+#           capture:
+#             json: "$.results[0]._id"
+#             as: "_id"
+#       - get:
+#           url: "/products/{{ _id }}"

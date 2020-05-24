@@ -6,21 +6,19 @@ const foregroundImg = ["https://feccapstone.s3-us-west-1.amazonaws.com/FB30020_F
 // createWriteStream creates a writable stream in a very simple manner
 // createWriteStream(PATH)
 const writeProducts = fs.createWriteStream('products.csv');
-writeProducts.write('id,name,price,foreground\n', 'utf8');
+writeProducts.write('name,price,foreground\n', 'utf8');
 
 // write the data to the supplied writable stream ten million times
 const writeTenMillionTimes = (writer, encoding, callback) => {
   let i = 10000000;
-  let id = 0;
   const write = () => {
     let ok = true;
     do {
       i--;
-      id += 1;
       const name = faker.commerce.productName();
       const price = faker.commerce.price(45, 60);
       const foreground = foregroundImg[Math.floor(Math.random() * foregroundImg.length)];
-      const data = `${id},${name},${price},${foreground}\n`;
+      const data = `${name},${price},${foreground}\n`;
       if (i === 0) {
         // last time when i reaches 0
         // writing the data, in this case, id, name, price, and foreground 

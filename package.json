@@ -7,10 +7,12 @@
     "start": "nodemon server/index.js",
     "build": "webpack --w",
     "genCSV": "node ./database/MSeed.js",
-    "seed": "mongoimport --type csv -d nav -c products --headerline --drop --file ./database/products.csv",
+    "seed": "mongoimport --type csv -d nav -c products --headerline --drop --file ./products.csv",
     "test": "jest",
     "aws": "aws s3 sync client/dist s3://navvideo --acl public-read",
-    "deploy": "npm run build && npm run aws"
+    "deploy": "npm run build && npm run aws",
+    "benchmarkPost": "artillery run benchmark/post.yml",
+    "benchmarkGet": "artillery run benchmark/get.yml"
   },
   "repository": {
     "type": "git",
