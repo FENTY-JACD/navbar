@@ -4,7 +4,7 @@ const Product = require('../database/Mindex.js');
 
 router.get('/products', (req, res) => {
   Product.find()
-    .sort({ $natural: 1 })
+    .sort({ $natural: -1 })
     .limit(1000)
     .then(doc => {
       // console.log(doc)
