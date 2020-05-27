@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack",
-    "schema": "mysql -h db.cjd9cquxgjfw.us-west-2.rds.amazonaws.com -P 3306 -u admin -p < schema.sql",
+    "schema": "psql -U postgres < schema.sql",
     "seed": "node database/seed.js ",
     "test": "jest",
     "aws": "aws s3 sync client/dist s3://navvideo --acl public-read",
@@ -29,6 +29,7 @@
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "log-timestamp": "^0.3.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
