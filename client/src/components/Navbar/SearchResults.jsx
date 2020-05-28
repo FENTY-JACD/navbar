@@ -18,10 +18,10 @@ const SearchResults = (props) =>{
     <table className='searchList' style={{borderCollapse: 'separate', borderSpacing: '0 40px', fontFamily: 'brown-regular,Questrial,Times,Arial,sans-serif', fontSize: '20px'}}>
       <tbody>
         <tr style={{cursor: 'pointer'}}>
-          {rowOne.map((product, i) =>{
+          {rowOne.map((product, i) => {
             return (
-              <td >
-                <div className='tableImg' style={tableStyle}>
+              <td>
+                <div className='tableImg' style={tableStyle} key={i}>
                   <img src={product.foreground} style={imgStyle}/>
                 </div>
                 <div className='tableTxt'>
@@ -37,8 +37,8 @@ const SearchResults = (props) =>{
         <tr style={{cursor: 'pointer'}}>
           {rowTwo.map((product, i) =>{
             return (
-              <td >
-                <div className='tableImg' style={tableStyle}>
+              <td>
+                <div className='tableImg' style={tableStyle} key={i} >
                   <img src={product.foreground} style={imgStyle}/>
                 </div>
                 <div className='tableTxt'>

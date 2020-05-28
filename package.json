@@ -8,7 +8,7 @@
     "build": "webpack",
     "schema": "psql -U postgres < schema.sql",
     "seed": "node database/seed.js ",
-    "test": "jest",
+    "test": "k6 run tests/script.js",
     "aws": "aws s3 sync client/dist s3://navvideo --acl public-read",
     "deploy": "npm run build && npm run aws"
   },
