@@ -3,6 +3,9 @@ client/dist/bundle.js
 client/src/config
 coverage
 server/config.js
+newrelic.js
+package-lock.json
+products.csv
 
 #amplify
 amplify

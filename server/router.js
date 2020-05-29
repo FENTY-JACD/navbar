@@ -17,6 +17,7 @@ router.get('/products', (req, res) => {
 
 router.get('/search', (req, res) => {
   Product.find({ "name": { $regex: req.query.search, $options: 'i' } })
+    .sort({ $natural: -1 })
     .limit(8)
     .then(data => {
       res.status(200).send(data);

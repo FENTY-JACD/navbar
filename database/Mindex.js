@@ -8,8 +8,6 @@ db.once('open', () => {
   console.log('Connected to database');
 });
 
-// .model Mongoose compiles a model
-// first argument is the singular name of the collection your model is for
 var Product = mongoose.model('Product', schema);
 
 module.exports = Product;
