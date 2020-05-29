@@ -11,7 +11,7 @@ const writeTenMillionTimes = (writer, encoding, callback) => {
     let ok = true;
     do {
       i--;
-      const name = faker.commerce.productName();
+      const name = faker.commerce.product();
       const price = faker.commerce.price(45, 60);
       const foreground = foregroundImg[Math.floor(Math.random() * foregroundImg.length)];
       const data = `${name},${price},${foreground}\n`;

@@ -7,7 +7,7 @@ export let options = {
   duration: '30s',
 };
 export default function() {
-  const name = faker.commerce.productName();
-  http.get(`http://localhost:4201/search?search='${name}'`);
+  let name = faker.commerce.product();
+  http.get(`http://localhost:4201/search?search=${name}`);
   sleep(.75);
 }
