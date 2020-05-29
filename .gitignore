@@ -6,6 +6,7 @@ server/config.js
 newrelic.js
 package-lock.json
 products.csv
+newrelic_agent.log
 
 #amplify
 amplify
