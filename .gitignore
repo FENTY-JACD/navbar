@@ -3,6 +3,7 @@ client/dist/bundle.js
 client/src/config
 coverage
 server/config.js
+package-lock.json
 
 #amplify
 amplify
